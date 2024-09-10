@@ -1,0 +1,92 @@
+<app-sidebar></app-sidebar>
+
+<!-- Page title-->
+<div class="border-bottom pt-5 mt-2 mb-5">
+    <h1 class="mt-2 mt-md-4 mb-3 pt-5">Ventas</h1>
+    <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
+      <p class="text-muted">Este módulo lista todas las ventas de la tienda.</p>
+
+    </div>
+</div>
+
+<div class="card box-shadow-sm">
+    <div class="card-header">
+        <h5 style="margin-bottom: 0px;">Filtro de ventas</h5>
+    </div>
+    <div class="card-header">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="form-label" for="pass-visibility">Desde</label>
+                    <input class="form-control" type="date" name="desde" [(ngModel)]="desde">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="form-label" for="pass-visibility">Hasta</label>
+                    <input class="form-control" type="date" name="hasta" [(ngModel)]="hasta">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <button type="button" class="btn btn-primary" (click)="filtrar()">Filtrar</button>
+    </div>
+    <div class="card-body">
+        <ng-container *ngFor="let item of ventas | slice:(page-1) * pageSize : (page-1) * pageSize + pageSize;">
+            <div class="row mt-3 justify-content-between">
+                <div class="col">
+                    <h3 class="h5 mb-2 nav-dark">
+                        <a class="nav-link">{{item.cliente.nombres}} {{item.cliente.apellidos}}</a>
+                    </h3>
+                </div>
+                <div class="col text-right">
+                    <span class="badge badge-primary mb-3">{{item.estado}}</span>
+                    <div class="dropdown">
+                        <a style="cursor: pointer;" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="cxi-settings"></span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a [routerLink]="['/panel/ventas',item._id]" class="dropdown-item">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <ul class="nav nav-muted mb-2 pb-1">
+                        <li class="nav-item mr-2">
+                          <span class="badge badge-dark MR-3">#{{item.nventa}}</span>
+                          <span class="text-border px-1">|</span>
+                        </li>
+                        <li class="nav-item mr-2">
+                          <a class="nav-link d-inline-block mr-2 p-0 font-size-sm font-weight-normal">
+                            {{item.createdAt | date}}
+                          </a>
+                          <span class="text-border px-1">|</span>
+                        </li>
+                        <li class="nav-item mr-2">
+                          <a href="#" class="nav-link d-inline-block mr-2 p-0 font-size-sm font-weight-normal">
+                            <i class="cxi-truck mt-n1 mr-2 font-size-base align-middle"></i>
+                            {{item.envio_titulo}}
+                          </a>
+                        </li>
+                      </ul>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="d-flex align-items-center">
+                        <span class="h5 d-inline-block mb-0">${{item.subtotal}}</span>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </ng-container>
+    </div>
+    <div class="card-footer">
+        <ngb-pagination
+        [(page)]="page"
+        [pageSize]="pageSize"
+        [collectionSize]="ventas.length"
+        ></ngb-pagination>
+    </div>
+</div>

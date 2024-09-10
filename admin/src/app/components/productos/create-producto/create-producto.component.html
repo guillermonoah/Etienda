@@ -1,0 +1,80 @@
+
+<app-sidebar></app-sidebar>
+
+<div class="border-bottom pt-5 mt-2 mb-5">
+    <h1 class="mt-2 mt-md-4 mb-3 pt-5">Productos</h1>
+    <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
+      <p class="text-muted">Este módulo lista todos los productos de la tienda.</p>
+      
+    </div>
+  </div>
+
+<form #registroForm="ngForm" (ngSubmit)="registro(registroForm)">    
+    <div class="card box-shadow-sm">
+    <div class="card-header">
+    <h5 style="margin-bottom: 0px;">Registro de producto</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-12 form-group">	
+                    <label for="titulo">Titulo de producto</label>
+                    <input id="titulo"type="text" class="form-control" placeholder="Titulo de producto" required name="titulo" [(ngModel)]="producto.titulo">
+                </div>
+                <div class="col-lg-4 form-group">	
+                    <label for="stock">Stock</label>
+                    <input id="stock" type="number" class="form-control" placeholder="Cantidad inicial" required name="stock" [(ngModel)]="producto.stock">
+                </div>
+                <div class="col-lg-4 form-group">	
+                    <label for="precio">Precio</label>
+                    <input id="precio" type="number" class="form-control" placeholder="Precio" required name="precio" [(ngModel)]="producto.precio">
+                </div>
+                <div class="col-lg-4 form-group">	
+                    <label for="categoria">Categoría</label>
+                    <select id="categoria" class="form-control custom-select" required name="categoria" [(ngModel)]="producto.categoria">
+                    <option value="" selected disabled>Seleccionar</option>
+                    <option value="{{item.titulo}}" *ngFor="let item of config_global.categorias">{{item.titulo}}</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-12 form-group">
+                    <label for="descripcion">Descripción corta</label>
+                    <textarea id="descripcion" class="form-control" placeholder="Titulo de producto" required rows="5" name="descripcion" [(ngModel)]="producto.descripcion"></textarea>
+                </div>
+
+                <div class="col-lg-12 form-group">
+                    <tinymce [config]="config" name="contenido" [(ngModel)]="producto.contenido"></tinymce>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="row">
+            <div class="col-lg-12 form-group">	
+                <label for="file-input">Portada</label>
+                <div class="custom-file">
+                    <input class="custom-file-input" type="file" id="file-input" (change)="fileChangeEvent($event)">
+                    <label class="custom-file-label" id="input-portada" for="file-input"
+                    style="white-space:nowrap; overflow:hidden;"
+                    >Seleccionar imagen</label>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <img  [src]="imgSelect" class="img-thumbnail" alt="Rounded image">
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="card-footer">
+    <button *ngIf="!load_btn" class="btn btn-primary mr-3" type="submit">Crear producto</button>
+    <button *ngIf="load_btn" type="button" class="btn btn-secondary" disabled>
+        <span class="spinner-grow spinner-grow-sm me-2" role="status" aria-hidden="true"></span>
+        Creando...
+    </button>
+    <a class="btn btn-warning" [routerLink]="['/panel/productos']" routerLinkActive="router-link-active">Regresar</a>
+    </div>
+    </div>  
+</form>
+                

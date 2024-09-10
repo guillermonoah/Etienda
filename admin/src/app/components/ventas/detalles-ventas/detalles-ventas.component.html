@@ -1,0 +1,168 @@
+<app-sidebar></app-sidebar>
+
+<!-- Page title-->
+<div class="border-bottom pt-5 mt-2 mb-5">
+    <h1 class="mt-2 mt-md-4 mb-3 pt-5">Ventas</h1>
+    <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
+      <p class="text-muted">Este módulo lista todas las ventas de la tienda.</p>
+      <p class="font-size-sm font-weight-medium pl-md-4">
+        <a class="text-nowrap" [routerLink]="['/panel/ventas']">Regresar<i class="cxi-angle-right font-size-base align-middle ml-1"></i></a>
+      </p>
+    </div>
+</div>
+
+<div class="card box-shadow-sm">
+    <div class="card-header">
+        <h5 style="margin-bottom: 0px;">Filtro de ventas</h5>
+    </div>
+
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-12 mb-4">
+              <div class="card card-body py-3 box-shadow ">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <table class="table mb-0">
+                      <tbody>
+                        <tr *ngIf="orden.cliente">
+                          <th class="border-0 py-2 pl-0">Cliente:</th>
+                          <td class="border-0 py-2 px-0 text-muted">{{orden.cliente.nombres}}</td>
+                        </tr>
+                        <tr>
+                          <th class="border-0 py-2 pl-0">Orden No:</th>
+                          <td class="border-0 py-2 px-0 text-muted">{{id.toUpperCase()}}</td>
+                        </tr>
+                        <tr>
+                          <th class="border-0 py-2 pl-0">Envio:</th>
+                          <td class="border-0 py-2 px-0 text-muted">{{orden.envio_titulo}}</td>
+                        </tr>
+                        <tr>
+                          <th class="border-0 py-2 pl-0">Fecha:</th>
+                          <td class="border-0 py-2 px-0 text-muted">{{orden.createdAt | date}}</td>
+                        </tr>
+                       
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="col-lg-6">
+                    <table class="table mb-0">
+                      <tbody>
+                      
+                        <tr>
+                          <th class="border-0 py-2 pl-0">Precio envio:</th>
+                          <td class="border-0 py-2 px-0 text-muted">${{orden.envio_precio}}</td>
+                        </tr>
+                        <tr>
+                          <th class="border-0 py-2 pl-0">Venta:</th>
+                          <td class="border-0 py-2 px-0 text-muted">{{orden.nventa}}</td>
+                        </tr>
+                        <tr>
+                          <th class="border-0 py-2 pl-0">Transacción:</th>
+                          <td class="border-0 py-2 px-0 text-muted">{{orden.transaccion}}</td>
+                        </tr>
+                        <tr>
+                          <th class="border-0 py-2 pl-0">Estado:</th>
+                          <td class="border-0 py-2 px-0 text-muted">{{orden.estado}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+            <div class="col-12 mb-4" *ngIf="orden.direccion">
+              <div class="card">
+                <div class="card-header">
+                    <strong>Dirección de envio</strong>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-md-3 col-sm-4 mb-sm-0 mb-3">
+                            <h3 class="mb-2 font-size-lg">{{orden.direccion.destinatario}}</h3>
+                            <span class="d-block mb-3 font-size-sm text-muted">{{orden.direccion.zip}}</span>
+
+                            <a class="badge badge-primary" *ngIf="orden.direccion.principal">Dirección de envio</a>
+                        </div>
+                        <div class="col">
+                            <p class="mb-3">
+                                {{orden.direccion.direccion}}
+                            </p>
+                            <p class="mb-3">
+                                {{orden.direccion.pais}}
+                                <span *ngIf="orden.direccion.region">- {{orden.direccion.region}} - </span> 
+                                <span *ngIf="orden.direccion.provincia">{{orden.direccion.provincia}} - </span> 
+                                <span *ngIf="orden.direccion.distrito">{{orden.direccion.distrito}}</span>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="card border-bottom">
+            <div id="order-1" class="collapse show" data-parent="#orders">
+              <div class="bg-secondary rounded mb-4">
+                <div class="table-responsive">
+                  <table class="table mb-0">
+                    <tbody>
+                      <tr *ngFor="let item of detalles">
+                        <td class="border-top-0">
+                          <div class="media pl-2 py-2">
+                            <a href="shop-single.html" style="min-width: 80px;">
+                              <img [src]="url+'obtener_portada/'+item.producto.portada" width="80" alt="Product thumb">
+                            </a>
+                            <div class="media-body pl-3">
+                              <h3 class="font-size-sm mb-3">
+                                <a href="shop-single.html" class="nav-link font-weight-bold">{{item.producto.titulo}}</a>
+                              </h3>
+                              <ul class="list-unstyled font-size-xs mt-n2 mb-2">
+                                <li class="mb-0"><span class="text-muted">{{item.producto.titulo_variedad}}:</span> {{item.variedad}}</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="border-top-0">
+                          <div class="py-2">
+                            <div class="font-size-xs text-muted mb-1">Precio:</div>
+                            <div class="font-size-sm text-dark">${{item.producto.precio}}</div>
+                          </div>
+                        </td>
+                        <td class="border-top-0">
+                          <div class="py-2">
+                            <div class="font-size-xs text-muted mb-1">Cantidad:</div>
+                            <div class="font-size-sm text-dark">{{item.cantidad}}</div>
+                          </div>
+                        </td>
+                        <td class="border-top-0">
+                          <div class="py-2 pr-3 text-right">
+                            <div class="font-size-xs text-muted mb-1">Subtotal:</div>
+                            <div class="font-size-sm font-weight-bold text-dark">${{item.subtotal}}</div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="py-2">
+                            <span class="font-size-xs text-muted">Envio: </span>
+                            <span class="font-size-sm text-dark">${{orden.envio_precio}}</span>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="py-2 pr-3 text-right">
+                            <span class="font-size-xs text-muted">Total: </span>
+                            <span class="font-size-sm font-weight-bold text-dark">${{orden.subtotal}}</span>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>

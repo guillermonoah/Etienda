@@ -1,0 +1,104 @@
+<app-nav></app-nav>
+
+<main  class="cs-page-wrapper">
+    <nav class="bg-secondary mb-3" aria-label="breadcrumb">
+        <div class="container">
+          <ol class="breadcrumb breadcrumb-alt mb-0">
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/']"><i class="cxi-home"></i></a>
+            </li>
+
+            <li class="breadcrumb-item active" aria-current="page">Mis reseñas</li>
+          </ol>
+        </div>
+      </nav>
+
+      <section class="container pt-3 pt-lg-4 pb-5 pb-lg-6">
+        <div class="row pb-2 pb-lg-0">
+
+          <!-- Account menu (sticky sidebar) -->
+          <aside class="col-xl-3 col-lg-4 pb-3 mb-4 mb-lg-0">
+              <app-siderbar></app-siderbar>
+          </aside>
+
+          <!-- Content -->
+          <div class="col-lg-8 ml-auto">
+            <div class="d-flex align-items-center justify-content-between mb-4 pb-sm-2">
+              <h1 class="h2 mb-0">Mis reseñas</h1>
+              <!-- <div class="form-inline">
+                <label for="sort-orders" class="d-none d-sm-block font-weight-bold mr-2 pr-1">Sort orders</label>
+                <select id="sort-orders" class="custom-select">
+                  <option>All</option>
+                  <option>Delivered</option>
+                  <option>In Progress</option>
+                  <option>Delayed</option>
+                  <option>Canceled</option>
+                </select>
+              </div> -->
+            </div>
+
+            <div class="row" *ngIf="load_data">
+              <div class="col-12 text-center">
+                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                  <span class="visually-hidden"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" *ngIf="!load_data">
+              <div class="col-12 mb-3" *ngFor="let item of reviews | slice:(page-1) * pageSize : (page-1) * pageSize + pageSize;">
+                <div class="mb-4 pb-4 border-bottom">
+                  <div class="row">
+                    <div class="col-md-3 col-sm-4 mb-sm-0 mb-3">
+                      <h3 class="mb-2 font-size-lg">{{item.cliente.nombres}}  {{item.cliente.apelldos}}</h3>
+                      <span class="d-block mb-3 font-siza-sm text-muted">{{item.createdAt | date}}</span>
+                      <div class="mt-n1 star-ratinng">
+
+                        <i class=" sr-star cxi-star" [ngClass]="{'active': item.estrellas >= 1}"></i>
+                        <i class=" sr-star cxi-star" [ngClass]="{'active': item.estrellas >= 2}"></i>
+                        <i class=" sr-star cxi-star" [ngClass]="{'active': item.estrellas >= 3}"></i>
+                        <i class=" sr-star cxi-star" [ngClass]="{'active': item.estrellas >= 4}"></i>
+                        <i class=" sr-star cxi-star" [ngClass]="{'active': item.estrellas >= 5}"></i>
+                      </div>
+                    </div>
+                    <div *ngFor="let review of reviews">
+                      <div class="review">
+                        <p>{{ review.review }}</p>
+                        <div class="stars">
+                          <i class="sr-star cxi-star" [ngClass]="{'active': review.estrellas >= 1}"></i>
+                          <i class="sr-star cxi-star" [ngClass]="{'active': review.estrellas >= 2}"></i>
+                          <i class="sr-star cxi-star" [ngClass]="{'active': review.estrellas >= 3}"></i>
+                          <i class="sr-star cxi-star" [ngClass]="{'active': review.estrellas >= 4}"></i>
+                          <i class="sr-star cxi-star" [ngClass]="{'active': review.estrellas >= 5}"></i>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col">
+                      <p class="mb-3">
+                        <a class="mr-1 font-weight-bold text-decration-none">{{item.cliente.email}}</a>
+                        <br>
+                        {{item.review}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <ngb-pagination
+                [(page)]="page"
+                [pageSize]="pageSize"
+                [collectionSize]="reviews.length"
+                ></ngb-pagination>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+</main>
+
+<app-footer></app-footer>

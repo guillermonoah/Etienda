@@ -1,0 +1,87 @@
+<app-nav></app-nav>
+
+<main  class="cs-page-wrapper">
+    <nav class="bg-secondary mb-3" aria-label="breadcrumb">
+        <div class="container">
+          <ol class="breadcrumb breadcrumb-alt mb-0">
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/']"><i class="cxi-home"></i></a>
+            </li>
+    
+            <li class="breadcrumb-item active" aria-current="page">Mi perfil</li>
+          </ol>
+        </div>
+      </nav>
+      
+      <section class="container pt-3 pt-lg-4 pb-5 pb-lg-6">
+        <div class="row pb-2 pb-lg-0">
+
+          <!-- Account menu (sticky sidebar) -->
+          <aside class="col-xl-3 col-lg-4 pb-3 mb-4 mb-lg-0">
+              <app-siderbar></app-siderbar>
+          </aside>
+
+          <!-- Content -->
+          <div class="col-lg-8 ml-auto">
+            <div class="d-flex align-items-center justify-content-between mb-4 pb-1 pb-sm-3">
+              <h1 class="h2 mb-0">Mi perfil</h1>        
+            </div>
+            <form #actualizarForm="ngForm" (ngSubmit)="actualizar(actualizarForm)">
+              <div class="row pb-3">
+                <div class="col-sm-6 form-group">
+                  <label for="nombres">Nombres</label>
+                  <input type="text" required class="form-control form-control-lg" id="nombres"  name="nombres" [(ngModel)]="cliente.nombres" placeholder="nombres completos">
+                </div>
+                <div class="col-sm-6 form-group">
+                  <label for="apellidos">Apellidos</label>
+                  <input type="text" required class="form-control form-control-lg" id="apellidos" name="apellidos" [(ngModel)]="cliente.apellidos" placeholder="apellidos completos">
+                </div>
+                <div class="col-sm-6 form-group">
+                  <label for="email">Email</label>
+                  <input id="email" type="email"required  class="form-control form-control-lg" readonly value="{{cliente.email}}">
+                </div>
+                <div class="col-sm-6 form-group">
+                  <label for="password">Contraseña</label>
+                  <input type="password" autocomplete="new-password" class="form-control form-control-lg" id="password" placeholder="Tu nueva contraseña">
+                </div>
+                <div class="col-sm-6 form-group">
+                  <label for="telefono">Teléfono</label>
+                  <input type="text" required class="form-control form-control-lg" id="telefono"name="telefono" [(ngModel)]="cliente.telefono" placeholder="9 8888 4444">
+                </div>
+                <div class="col-sm-6 form-group">
+                  <label for="f_nacimiento">Fecha de nacimiento</label>
+                  <input type="date" required class="form-control form-control-lg" id="f_nacimiento" name="f_nacimiento" [(ngModel)]="cliente.f_nacimiento">
+                </div>
+                <div class="col-sm-6 form-group">
+                  <label for="dni">Rut</label>
+                  <input type="text" required class="form-control form-control-lg"  id="dni"name="dni" [(ngModel)]="cliente.dni" placeholder="187775551">
+                </div>
+                <div class="col-sm-6 form-group">
+                  <label for="genero">Género</label>
+                  <select id="genero" required class="custom-select custom-select-lg"  name="genero" [(ngModel)]="cliente.genero">
+                    <option value="" disabled selected>Seleccionar</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                  </select>
+                </div>
+                <div class="col-sm-6 form-group">
+                  <label for="pais">País</label>
+                  <select id="pais" required class="custom-select custom-select-lg"  name="pais" [(ngModel)]="cliente.pais">
+                    <option value="" disabled selected>Seleccionar</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Bolivia">Bolivia</option>
+                    <option value="Chile">Chile</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Peru">Peru</option>
+                  </select>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg">&nbsp;Actualizar perfil&nbsp;</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+</main>
+
+<app-footer></app-footer>

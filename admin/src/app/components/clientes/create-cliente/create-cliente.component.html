@@ -1,0 +1,72 @@
+
+<app-sidebar></app-sidebar>
+
+<!-- Page title-->
+<div class="border-bottom pt-5 mt-2 mb-5">
+    <h1 class="mt-2 mt-md-4 mb-3 pt-5">Clientes</h1>
+    <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
+        <p class="text-muted">Este módulo lista todos los clientes de la tienda.</p>    
+    </div>
+</div>
+
+<form #registroForm="ngForm" (ngSubmit)="registro(registroForm)">
+<div class="card box-shadow-sm">
+        <div class="card-header">
+            <h5 style="margin-bottom: 0px;">Registro de cliente</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label for="nombres" class="form-label">Nombres</label>
+                    <input class="form-control" type="text" placeholder="Nombre completo" required
+                    id="nombres" name="nombres" [(ngModel)]="cliente.nombres">
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="apellidos" class="form-label">Apellidos</label>
+                    <input class="form-control" type="text" placeholder="Apellidos" required
+                    id="apellidos" name="apellidos" [(ngModel)]="cliente.apellidos">
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="email" class="form-label">Correo electrónico</label>
+                    <input class="form-control" type="email" placeholder="Correo electrónico" required
+                    id="email" name="email" [(ngModel)]="cliente.email" autocomplete="on" >
+                </div>
+
+                <div class="col-md-4 form-group">
+                    <label for="telefono" class="form-label">Telefono</label>
+                    <input class="form-control" type="text" placeholder="Telefono" required
+                    id="telefono" name="telefono" [(ngModel)]="cliente.telefono">
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="f_nacimiento" class="form-label">Fecha nacimiento</label>
+                    <input class="form-control" type="date" required
+                    id="f_nacimiento" name="f_nacimiento" [(ngModel)]="cliente.f_nacimiento">
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="dni" class="form-label">DNI</label>
+                    <input class="form-control" type="text" placeholder="DNI" required
+                    id="dni" name="dni" [(ngModel)]="cliente.dni">
+                </div>
+
+                <div class="col-md-4">
+                <label for="genero" class="form-label">Género</label>
+                <select class="form-control custom-select" required id="genero" name="genero" [(ngModel)]="cliente.genero">
+                    <option value="">Seleccione</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                </select>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button   *ngIf="!load_btn"  class="btn btn-primary mr-3" type="submit">Crear cliente</button>
+            <!-- Button with growing spinner and text -->
+            <button *ngIf="load_btn" type="button" class="btn btn-secondary" disabled>
+                <span class="spinner-grow spinner-grow-sm me-2" role="status" aria-hidden="true"></span>
+                Creando...
+            </button>
+            <a [routerLink]="['/panel/clientes']" class="btn btn-warning">Regresar</a>
+        </div>
+    </div>  
+</form>
+                

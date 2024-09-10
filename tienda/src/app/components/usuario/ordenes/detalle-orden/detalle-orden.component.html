@@ -1,0 +1,217 @@
+<app-nav></app-nav>
+
+<main  class="cs-page-wrapper">
+    <nav class="bg-secondary mb-3" aria-label="breadcrumb">
+        <div class="container">
+          <ol class="breadcrumb breadcrumb-alt mb-0">
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/']"><i class="cxi-home"></i></a>
+            </li>
+    
+            <li class="breadcrumb-item active" aria-current="page">Mis ordenes</li>
+          </ol>
+        </div>
+      </nav>
+      
+      <section class="container pt-3 pt-lg-4 pb-5 pb-lg-6">
+        <div class="row pb-2 pb-lg-0">
+
+          <!-- Account menu (sticky sidebar) -->
+          <aside class="col-xl-3 col-lg-4 pb-3 mb-4 mb-lg-0">
+              <app-siderbar></app-siderbar>
+          </aside>
+
+          <!-- Content -->
+          <div class="col-lg-8 ml-auto" *ngIf="orden != undefined">
+            <div class="d-flex align-items-center justify-content-between mb-4 pb-sm-2">
+                <h1 class="h2 mb-0">Mi orden #{{id.toUpperCase()}}</h1>
+            </div>
+
+              <div class="row">
+                <div class="col-12 mb-4">
+                  <div class="card card-body py-3 box-shadow ">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <table class="table mb-0">
+                          <tbody>
+                            <tr>
+                              <th class="border-0 py-2 pl-0">Orden No:</th>
+                              <td class="border-0 py-2 px-0 text-muted">{{id.toUpperCase()}}</td>
+                            </tr>
+                            <tr>
+                              <th class="border-0 py-2 pl-0">Envio:</th>
+                              <td class="border-0 py-2 px-0 text-muted">{{orden.envio_titulo}}</td>
+                            </tr>
+                            <tr>
+                              <th class="border-0 py-2 pl-0">Fecha:</th>
+                              <td class="border-0 py-2 px-0 text-muted">{{orden.createdAt | date}}</td>
+                            </tr>
+                           
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="col-lg-6">
+                        <table class="table mb-0">
+                          <tbody>
+                            <tr>
+                              <th class="border-0 py-2 pl-0">Venta:</th>
+                              <td class="border-0 py-2 px-0 text-muted">{{orden.nventa}}</td>
+                            </tr>
+                            <tr>
+                              <th class="border-0 py-2 pl-0">Transacción:</th>
+                              <td class="border-0 py-2 px-0 text-muted">{{orden.transaccion}}</td>
+                            </tr>
+                            <tr>
+                              <th class="border-0 py-2 pl-0">Estado:</th>
+                              <td class="border-0 py-2 px-0 text-muted">{{orden.estado}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 mb-4" *ngIf="orden.direccion">
+                  <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="col-md-3 col-sm-4 mb-sm-0 mb-3">
+                                <h3 class="mb-2 font-size-lg">{{orden.direccion.destinatario}}</h3>
+                                <span class="d-block mb-3 font-size-sm text-muted">{{orden.direccion.zip}}</span>
+
+                                <a class="badge badge-primary" *ngIf="orden.direccion.principal">Dirección de envio</a>
+                            </div>
+                            <div class="col">
+                                <p class="mb-3">
+                                    {{orden.direccion.direccion}}
+                                </p>
+                                <p class="mb-3">
+                                    {{orden.direccion.pais}}
+                                    <span *ngIf="orden.direccion.region">- {{orden.direccion.region}} - </span> 
+                                    <span *ngIf="orden.direccion.provincia">{{orden.direccion.provincia}} - </span> 
+                                    <span *ngIf="orden.direccion.distrito">{{orden.direccion.distrito}}</span>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                </div>
+              </div>
+
+              <div class="card border-bottom">
+
+                <div id="order-1" class="collapse show" data-parent="#orders">
+                  <div class="bg-secondary rounded mb-4">
+                    <div class="table-responsive">
+                      <table class="table mb-0">
+                        <tbody>
+                          <tr *ngFor="let item of detalles">
+                            <td class="border-top-0">
+                              <div class="media pl-2 py-2">
+                                <a style="min-width: 80px;">
+                                  <img [src]="url+'obtener_portada/'+item.producto.portada" width="80" alt="Product thumb">
+                                </a>
+                                <div class="media-body pl-3">
+                                  <h3 class="font-size-sm mb-3">
+                                    <a class="nav-link font-weight-bold">{{item.producto.titulo}}</a>
+                                  </h3>
+                                  <ul class="list-unstyled font-size-xs mt-n2 mb-2">
+                                    <li class="mb-0"><span class="text-muted">{{item.producto.titulo_variedad}}:</span> {{item.variedad}}</li>
+                                  </ul>
+                                  <span *ngIf="item.estado" class="badge bg-success" style="color: white;">Reseña emitida</span>
+                                  <a *ngIf="!item.estado" (click)="openModal(item)" style="cursor: pointer;" data-toggle="modal" [attr.data-target]="'#review-'+item._id" class="text-primary">[Emitir reseña]</a>
+                                  <div class="modal fade" id="review-{{item._id}}" tabindex="-1" style="display: none;" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h4 class="modal-title">Emitir reseña</h4>
+                                          <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <div class="row mb-3">
+                                            <div class="col-sm-12 form-group">
+                                              <label for="review-2-{{item._id}}">Reseña</label>
+                                              <textarea placeholder="Que te parecio el producto?" type="text" required class="form-control form-control-lg" id="review-2-{{item._id}}"  name="review-2-{{item._id}}" [(ngModel)]="review.review" rows="3"></textarea>
+                                           </div>
+                                          </div>
+                                          <ngx-stars
+                                            [size]="3"
+                                            [maxStars]="5"
+                                            [initialStars]="totalStar"
+                                            [color]="'#ffd700'"
+                                            [animation]="false"
+                                            (ratingOutput)="onRatingSet($event)">
+                                          </ngx-stars>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button class="btn btn-secondary btn-sm" type="button" data-bs-dismiss="modal">Cerrar</button>
+                                          <button (click)="emitir(item._id)" class="btn btn-primary btn-sm" type="button">Enviar</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                            <td class="border-top-0">
+                              <div class="py-2">
+                                <div class="font-size-xs text-muted mb-1">Precio:</div>
+                                <div class="font-size-sm text-dark">${{item.producto.precio}}</div>
+                              </div>
+                            </td>
+                            <td class="border-top-0">
+                              <div class="py-2">
+                                <div class="font-size-xs text-muted mb-1">Cantidad:</div>
+                                <div class="font-size-sm text-dark">{{item.cantidad}}</div>
+                              </div>
+                            </td>
+                            <td class="border-top-0">
+                              <div class="py-2 pr-3 text-right">
+                                <div class="font-size-xs text-muted mb-1">Subtotal:</div>
+                                <div class="font-size-sm font-weight-bold text-dark">${{item.subtotal}}</div>
+                              </div>
+                            </td>
+                          </tr>
+                   
+                          <tr>
+                            <td>
+                              <div class="py-2">
+                                <span class="font-size-xs text-muted">Envio: </span>
+                                <span class="font-size-sm text-dark">${{orden.envio_precio}}</span>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="py-2 pr-3 text-right">
+                                <span class="font-size-xs text-muted">Total: </span>
+                                <span class="font-size-sm font-weight-bold text-dark">${{orden.subtotal}}</span>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="col-lg-8 ml-auto" *ngIf="orden == undefined">
+            <div class="row">
+              <div class="col-12">
+                <div class="col-lg-12 col-md-5">
+                  <h3 class="h6 mb-2 text-uppercase">Error 404</h3>
+                  <h2 class="h3 pb-lg-3">No se encontraron detalles con esta orden.</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+ 
+        </div>
+      </section>
+
+</main>
+
+<app-footer></app-footer>

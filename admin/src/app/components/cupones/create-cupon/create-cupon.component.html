@@ -1,0 +1,58 @@
+
+<app-sidebar></app-sidebar>
+
+<!-- Page title-->
+<div class="border-bottom pt-5 mt-2 mb-5">
+    <h1 class="mt-2 mt-md-4 mb-3 pt-5">Cupones</h1>
+    <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
+        <p class="text-muted">Este módulo lista todos los cupones de la tienda.</p>    
+    </div>
+</div>
+
+<form #registroForm="ngForm" (ngSubmit)="registro(registroForm)">
+<div class="card box-shadow-sm">
+        <div class="card-header">
+            <h5 style="margin-bottom: 0px;">Registro de cupón</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 form-group">
+                    <label for="codigo" class="form-label">Código cupón</label>
+                    <input class="form-control" type="text" placeholder="Código cupón" required
+                    id="codigo" name="codigo" [(ngModel)]="cupon.codigo">
+                </div>
+                
+                <div class="col-lg-3 col-md-6 ">
+                    <label for="tipo" class="form-label">Tipo</label>
+                    <select class="form-control custom-select" required id="tipo" name="tipo" [(ngModel)]="cupon.tipo">
+                        <option value="" disabled selected>Seleccione</option>
+                        <option value="porcentaje">Porcentaje</option>
+                        <option value="valor fijo">Valor fijo</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-3 col-md-6  form-group">
+                    <label for="valor" class="form-label">Valor descuento</label>
+                    <input class="form-control" type="number" placeholder="Valor descuento" required
+                    id="valor" name="valor" [(ngModel)]="cupon.valor">
+                </div>
+
+                <div class="col-lg-3 col-md-6  form-group">
+                    <label for="limite" class="form-label">limite </label>
+                    <input class="form-control" type="number" placeholder="limite máximo" required
+                    id="limite" name="limite" [(ngModel)]="cupon.limite">
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button   *ngIf="!load_btn"  class="btn btn-primary mr-3" type="submit">Crear cupón</button>
+            <!-- Button with growing spinner and text -->
+            <button *ngIf="load_btn" type="button" class="btn btn-secondary" disabled>
+                <span class="spinner-grow spinner-grow-sm me-2" role="status" aria-hidden="true"></span>
+                Creando...
+            </button>
+            <a [routerLink]="['/panel/cupones']" class="btn btn-warning">Regresar</a>
+        </div>
+    </div>  
+</form>
+                
