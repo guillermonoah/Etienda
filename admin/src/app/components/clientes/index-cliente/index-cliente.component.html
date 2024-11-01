@@ -18,10 +18,15 @@
     </div>
     <div class="card-header">
         <form class="form-inline pt-2">
+            <label class="sr-only" for="inline-form-input-name">Apellidos</label>
             <input class="form-control mb-3 mr-sm-4" (keyup)="filtro('apellidos')" name="filtro_apellidos" [(ngModel)]="filtro_apellidos" type="text" id="inline-form-input-name" placeholder="Apellidos">
+            <label class="sr-only" for="inline-form-input-username">Correo</label>
             <div class="input-group mb-3 mr-sm-4">
-                <input class="form-control" type="text" (keyup)="filtro('correo')" name="filtro_correo" [(ngModel)]="filtro_correo" placeholder="Correo">
+            <div class="input-group-prepend">
+                <div class="input-group-text"></div>
             </div>
+            <input class="form-control" type="text" (keyup)="filtro('correo')" name="filtro_correo" [(ngModel)]="filtro_correo" placeholder="Correo">
+            </div>        
         </form>
     </div>
     <div class="card-body">

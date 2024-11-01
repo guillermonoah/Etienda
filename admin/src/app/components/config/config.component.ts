@@ -3,6 +3,7 @@ import { AdminService } from '../../services/admin.service';
 import { v4 as uuidv4 } from 'uuid';
 import { response } from 'express';
 import { GLOBAL } from '../../services/global';
+// const { v4: uuidv4 } = require('uuid');
 
 declare var jQuery:any;
 declare var $:any;
@@ -34,7 +35,7 @@ export class ConfigComponent implements OnInit{
       reponse=>{
         this.config = reponse.data;
         this.imgSelect = this.url+'obtener_logo/'+this.config.logo;
-        // console.log(this.config);
+        console.log(this.config);
       },
       error=>{
         console.log(error);
@@ -165,10 +166,6 @@ export class ConfigComponent implements OnInit{
   ngDoCheck(): void {
     
     $('.cs-file-drop-preview').html("<img src="+this.imgSelect+">");
-  }
-
-  eliminar_categoria(idx:any){
-    this.config.categorias.splice(idx,1);
   }
 
 }

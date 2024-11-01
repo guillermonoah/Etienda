@@ -2,17 +2,11 @@ var Config = require('../models/config');
 var fs = require('fs');
 var path = require('path');
 
-
-/*variable para trabajar en 2 equipos con 2 BD diferentes */
-var idHP ="664cef82d033ba9cec80115e"; //en trabajo
-var idHuawei ="664cef82d033ba9cec80115e"; //en casa
-var idFijo =idHP;
-
 const obtener_config_admin = async function(req,res){
     if (req.user) {
         if (req.user.role == 'admin') {
             
-            let reg = await Config.findById({_id:idFijo});
+            let reg = await Config.findById({_id:"662286d17cd4489f221372be"});
             res.status(200).send({data:reg});  
 
         }else{            
@@ -43,8 +37,8 @@ const actualizar_config_admin = async function(req,res){
                 var name = img_path.split('\\');
                 var logo_name= name[2];
                 //se actualiza la img
-                let reg = await Config.findByIdAndUpdate({_id:idFijo},{
-                    categorias:JSON.parse(data.categorias),
+                let reg = await Config.findByIdAndUpdate({_id:"662286d17cd4489f221372be"},{
+                    categorias:data.categorias,
                     titulo:data.titulo,
                     logo:logo_name,
                     serie:data.serie,
@@ -62,7 +56,7 @@ const actualizar_config_admin = async function(req,res){
                 res.status(200).send({data:reg});  
             }else{
                 console.log("No hay Img");
-                let reg = await Config.findByIdAndUpdate({_id:idFijo},{
+                let reg = await Config.findByIdAndUpdate({_id:"662286d17cd4489f221372be"},{
                     categorias:data.categorias,
                     titulo:data.titulo,
                     serie:data.serie,
@@ -96,15 +90,8 @@ const obtener_logo = async function(req,res){
     })
 }
 
-const obtener_config_publico = async function(req,res){
-    let reg = await Config.findById({_id:idFijo});
-    res.status(200).send({data:reg});  
-}
-
-
 module.exports ={
     actualizar_config_admin,
     obtener_config_admin,
-    obtener_logo,
-    obtener_config_publico
+    obtener_logo
 }

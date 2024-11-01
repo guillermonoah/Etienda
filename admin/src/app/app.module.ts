@@ -22,15 +22,6 @@ import { CreateCuponComponent } from './components/cupones/create-cupon/create-c
 import { IndexCuponComponent } from './components/cupones/index-cupon/index-cupon.component';
 import { UpdateCuponComponent } from './components/cupones/update-cupon/update-cupon.component';
 import { ConfigComponent } from './components/config/config.component';
-import { VariedadProductoComponent } from './components/productos/variedad-producto/variedad-producto.component';
-import { GaleriaProductoComponent } from './components/productos/galeria-producto/galeria-producto.component';
-import { CreateDescuentoComponent } from './components/descuentos/create-descuento/create-descuento.component';
-import { EditDescuentoComponent } from './components/descuentos/edit-descuento/edit-descuento.component';
-import { IndexDescuentoComponent } from './components/descuentos/index-descuento/index-descuento.component';
-import { IndexContactoComponent } from './components/contacto/index-contacto/index-contacto.component';
-import { ReviewsProductoComponent } from './components/productos/reviews-producto/reviews-producto.component';
-import { IndexVentasComponent } from './components/ventas/index-ventas/index-ventas.component';
-import { DetallesVentasComponent } from './components/ventas/detalles-ventas/detalles-ventas.component';
 
 @NgModule({
   declarations: [
@@ -49,15 +40,6 @@ import { DetallesVentasComponent } from './components/ventas/detalles-ventas/det
     IndexCuponComponent,
     UpdateCuponComponent,
     ConfigComponent,
-    VariedadProductoComponent,
-    GaleriaProductoComponent,
-    CreateDescuentoComponent,
-    EditDescuentoComponent,
-    IndexDescuentoComponent,
-    IndexContactoComponent,
-    ReviewsProductoComponent,
-    IndexVentasComponent,
-    DetallesVentasComponent,
   ],
   imports: [
     BrowserModule,

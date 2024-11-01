@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    // console.log(this.token);
+    console.log(this.token);
     if(this.token){
       this._router.navigate(['/']);
     }else{
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit{
 
   login(loginForm:any){
     if(loginForm.valid){
-      // console.log(this.user);
+      console.log(this.user);
 
       let data = {
         email:this.user.email,
@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit{
             //reedireccion
             this._router.navigate(['/']);
           }
-          // console.log(response);
+          console.log(response);
         }),
         catchError((error: any) => {
           console.log(error);

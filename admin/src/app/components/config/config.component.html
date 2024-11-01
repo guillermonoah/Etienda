@@ -3,7 +3,7 @@
 <div class="border-bottom pt-5 mt-2 mb-5">
     <h1 class="mt-2 mt-md-4 mb-3 pt-5">Configuraciones</h1>
     <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
-      <p class="text-muted">Este módulo se establece las configuraciones de la tienda.</p>
+      <p class="text-muted">Este módulo se estableve las configuraciones de la tineda.</p>
 
     </div>
   </div>
@@ -16,24 +16,24 @@
     <div class="card-body">
       <div style="max-width: 48rem;">
         <div class="form-group row align-items-center">
-          <label class="col-md-3 col-form-label font-weight-medium" for="titulo">Nombre de la tienda</label>
+          <label class="col-md-3 col-form-label font-weight-medium" for="text-input">Nombre de la tienda</label>
           <div class="col-md-9">
-            <input class="form-control" required type="text" id="titulo" placeholder="Createx" name="titulo" [(ngModel)]="config.titulo">
+            <input class="form-control" required type="text" id="text-input" placeholder="Createx" name="titulo" [(ngModel)]="config.titulo">
           </div>
         </div>
         <div class="form-group row align-items-center">
-          <label class="col-md-3 col-form-label font-weight-medium" for="serie">Facturación</label>
+          <label class="col-md-3 col-form-label font-weight-medium" for="text-input">Facturación</label>
           <div class="col-md-4">
-            <input class="form-control" required type="number" id="serie" name="serie" [(ngModel)]="config.serie">
+            <input class="form-control" required type="number" id="text-input" name="serie" [(ngModel)]="config.serie">
           </div>
           <div class="col-md-5">
-            <input class="form-control" required type="number" id="correlativo" name="correlativo" [(ngModel)]="config.correlativo">
+            <input class="form-control" required type="number" id="text-input" name="correlativo" [(ngModel)]="config.correlativo">
           </div>
         </div>
         <div class="form-group row align-items-center">
-          <label class="col-md-3 col-form-label font-weight-medium" for="titulo_cat">Categorías</label>
+          <label class="col-md-3 col-form-label font-weight-medium" for="text-input">Categorías</label>
           <div class="col-md-4">
-            <input class="form-control"  type="text" id="titulo_cat" placeholder="Titulo" name="titulo_cat" [(ngModel)]="titulo_cat">
+            <input class="form-control"  type="text" id="text-input" placeholder="Titulo" name="titulo_cat" [(ngModel)]="titulo_cat">
           </div>
           <div class="col-md-5">
             <input class="form-control"  type="text" id="text-input" placeholder="Icono" name="icono_cat" [(ngModel)]="icono_cat">
@@ -48,10 +48,9 @@
                     <tr>
                       <th>Categoria</th>
                       <th>Icono</th>
-                      <th>Eliminar</th>
                     </tr>
                  </thead>
-                 <ng-container *ngIf="config.categorias.length==0">
+                 <ng-container *ngIf="config.categorias.length==0">                    
                   <tbody>
                     <tr>
                       <td colspan="2" class="text-center">
@@ -60,17 +59,14 @@
                     </tr>
                   </tbody>
                  </ng-container>
-                 <ng-container *ngIf="config.categorias.length>= 1">
-                  <tbody *ngFor="let item of config.categorias; let indice = index">
+                 <ng-container *ngIf="config.categorias.length>= 1">                    
+                  <tbody *ngFor="let item of config.categorias">
                     <tr>
                       <td>
                         {{item.titulo}}
                       </td>
                       <td>
-                       <i class="{{item.icono}}"></i> {{item.icono}}
-                      </td>
-                      <td>
-                      <a style="cursor: pointer;" class="text-danger" (click)="eliminar_categoria(indice)">[Eliminar]</a>
+                        {{item.icono}}
                       </td>
                     </tr>
                   </tbody>
@@ -80,7 +76,7 @@
           </div>
         </div>
         <div class="form-group row align-items-center">
-          <label class="col-md-3 col-form-label font-weight-medium" for="logo">Logo</label>
+          <label class="col-md-3 col-form-label font-weight-medium" for="file-input">Logo</label>
             <div class="col-md-9">
             <!-- Drag and drop file upload -->
               <div class="cs-file-drop-area">
@@ -88,7 +84,7 @@
                   <img [src]="imgSelect" alt="">
                 </div>
                   <span class="cs-file-drop-message">Arrastre la imagen</span>
-                  <input id="logo" type="file" class="cs-file-drop-input" (change)="fileChangeEvent($event)">
+                  <input type="file" class="cs-file-drop-input" (change)="fileChangeEvent($event)">
                   <button type="button" class="cs-file-drop-btn btn btn-outline-primary btn-sm">Subir imagen</button>
               </div>
            </div>

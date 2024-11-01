@@ -19,32 +19,34 @@
         <div class="col-lg-8">
             <div class="row">
                 <div class="col-lg-12 form-group">	
-                    <label for="titulo">Titulo de producto</label>
-                    <input id="titulo"type="text" class="form-control" placeholder="Titulo de producto" required name="titulo" [(ngModel)]="producto.titulo">
+                    <label for="">Titulo de producto</label>
+                    <input type="text" class="form-control" placeholder="Titulo de producto" required name="titulo" [(ngModel)]="producto.titulo">
                 </div>
                 <div class="col-lg-4 form-group">	
-                    <label for="stock">Stock</label>
-                    <input id="stock" type="number" class="form-control" placeholder="Cantidad inicial" required name="stock" [(ngModel)]="producto.stock">
+                    <label for="">Stock</label>
+                    <input type="number" class="form-control" placeholder="Cantidad inicial" required name="stock" [(ngModel)]="producto.stock">
                 </div>
                 <div class="col-lg-4 form-group">	
-                    <label for="precio">Precio</label>
-                    <input id="precio" type="number" class="form-control" placeholder="Precio" required name="precio" [(ngModel)]="producto.precio">
+                    <label for="">Precio</label>
+                    <input type="number" class="form-control" placeholder="Precio" required name="precio" [(ngModel)]="producto.precio">
                 </div>
                 <div class="col-lg-4 form-group">	
-                    <label for="categoria">Categoría</label>
-                    <select id="categoria" class="form-control custom-select" required name="categoria" [(ngModel)]="producto.categoria">
+                    <label for="">Categoría</label>
+                    <select class="form-control custom-select" id="select-input" required name="categoria" [(ngModel)]="producto.categoria">
                     <option value="" selected disabled>Seleccionar</option>
-                    <option value="{{item.titulo}}" *ngFor="let item of config_global.categorias">{{item.titulo}}</option>
+                    <option value="Categoria 1">Categoria 1</option>
+                    <option value="Categoria 2">Categoria 2</option>
+                    <option value="Categoria 3">Categoria 3</option>
                     </select>
                 </div>
 
                 <div class="col-lg-12 form-group">
-                    <label for="descripcion">Descripción corta</label>
-                    <textarea id="descripcion" class="form-control" placeholder="Titulo de producto" required rows="5" name="descripcion" [(ngModel)]="producto.descripcion"></textarea>
+                    <label for="">Descripción corta</label>
+                    <textarea class="form-control" placeholder="Titulo de producto" required rows="5" name="descripcion" [(ngModel)]="producto.descripcion"></textarea>
                 </div>
 
                 <div class="col-lg-12 form-group">
-                    <tinymce [config]="config" name="contenido" [(ngModel)]="producto.contenido"></tinymce>
+                    <tinymce [config]="config" name="contenido" [(ngModel)]="producto.contenido"></tinymce>            
                 </div>
 
             </div>
@@ -52,7 +54,7 @@
         <div class="col-lg-4">
             <div class="row">
             <div class="col-lg-12 form-group">	
-                <label for="file-input">Portada</label>
+                <label for="">Portada</label>
                 <div class="custom-file">
                     <input class="custom-file-input" type="file" id="file-input" (change)="fileChangeEvent($event)">
                     <label class="custom-file-label" id="input-portada" for="file-input"

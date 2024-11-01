@@ -18,17 +18,14 @@
     </div>
     <div class="card-header">
         <div class="row">
-            <div class="col-6">
+            <div class="clo-6">
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="Titulo del producto" name="filtro" [(ngModel)]="filtro">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button" (click)="filtrar()">Filtro</button>
                         <button class="btn btn-info" type="button" (click)="limpiar()">Limpiar</button>
                     </div>
-                </div>
-            </div>
-            <div class="col-12 mt-3">
-                <button class="btn btn-success" (click)="donwload_excel()">Exportar a excel</button>
+                </div>        
             </div>
         </div>
     </div>
@@ -54,7 +51,7 @@
                     </tbody>
 
                     <ng-container *ngIf="!load_data">
-                        <tbody *ngFor="let item of producto | slice:(page-1) * pageSize : (page-1) * pageSize + pageSize;">
+                        <tbody *ngFor="let item of producto| slice:(page-1) * pageSize : (page-1) * pageSize + pageSize;">
                             <tr>
                                 <td>
                                     <h6 style="padding-bottom: 0; margin-bottom: 0px;">
@@ -71,12 +68,9 @@
                                         <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">OPCIONES    
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" [routerLink]="['/panel/productos',item._id]">Editar producto</a>
+                                            <a class="dropdown-item" [routerLink]="['/panel/productos',item._id]" routerLinkActive="router-link-active">Editar producto</a>
                                             <a class="dropdown-item" style="cursor: pointer;" data-toggle="modal" [attr.data-target]="'#delete-'+item._id" >Eliminar producto</a>
-                                            <a class="dropdown-item" [routerLink]="['/panel/productos/inventario',item._id]">Inventario</a>
-                                            <a class="dropdown-item" [routerLink]="['/panel/productos/variedades',item._id]">Variedades</a>
-                                            <a class="dropdown-item" [routerLink]="['/panel/productos/galeria',item._id]">Galeria</a>
-                                            <a class="dropdown-item" [routerLink]="['/panel/productos/reviews',item._id]">Reseñas</a>
+                                            <a class="dropdown-item" [routerLink]="['/panel/productos/inventario',item._id]" routerLinkActive="router-link-active">Inventario</a>
                                         </div>    
                                     </div>
                                     <div class="modal fade" id="delete-{{item._id}}" tabindex="-1" style="display: none;" aria-hidden="true">

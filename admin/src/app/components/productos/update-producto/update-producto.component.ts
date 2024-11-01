@@ -5,7 +5,6 @@ import { subscribe } from 'diagnostics_channel';
 import { response } from 'express';
 import { error } from 'console';
 import { GLOBAL } from '../../../services/global';
-import { AdminService } from '../../../services/admin.service';
 
 declare var jQuery:any;
 declare var $:any;
@@ -26,25 +25,17 @@ export class UpdateProductoComponent implements OnInit{
   public token:any ;
   public url:any ;
   public file:File | undefined;
-  public config_global :any = {};
 
   constructor(
     private _route: ActivatedRoute,
     private _productoService: ProductoService,
-    private _router:Router,
-    private _adminService:AdminService,
+    private _router:Router
   ){
     this.config={
       height:500
     }
     this.token = localStorage.getItem('token');
     this.url = GLOBAL.url;
-    this._adminService.obtener_config_publico().subscribe(
-      response=>{
-        this.config_global = response.data;
-        console.log( this.config_global);
-      }
-    )
   }
 
   ngOnInit(): void {

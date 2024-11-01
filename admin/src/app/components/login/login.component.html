@@ -6,13 +6,13 @@
         <p class="font-size-sm text-muted text-center">Inicie sesión en su cuenta utilizando el correo electrónico y la contraseña proporcionados durante el registro.</p>
         <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
           <div class="form-group">
-            <label for="email">Correo electrónico</label>
-            <input id="email" type="email" class="form-control" name="email" [(ngModel)]="user.email" placeholder="Correo electrónico" required="">
+            <label for="signin-email">Correo electrónico</label>
+            <input type="email" class="form-control" name="email" [(ngModel)]="user.email" placeholder="Correo electrónico" required="">
           </div>
           <div class="form-group">
-            <label for="password" class="form-label">Contraseña</label>
+            <label for="signin-password" class="form-label">Contraseña</label>
             <div class="cs-password-toggle input-group-overlay">
-              <input  id="password"  type="password" class="form-control appended-form-control"  name="password" [(ngModel)]="user.password" placeholder="Tu contraseña" required="">
+              <input type="password" class="form-control appended-form-control"  name="password" [(ngModel)]="user.password" placeholder="Tu contraseña" required="">
               <div class="input-group-append-overlay">
                 <label class="btn cs-password-toggle-btn input-group-text">
                   <input type="checkbox" class="custom-control-input">

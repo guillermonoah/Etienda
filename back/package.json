@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "back": "file:",
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.20.2",
     "connect-multiparty": "^2.2.0",
@@ -17,8 +16,7 @@
     "jsonwebtoken": "^9.0.2",
     "jwt-simple": "^0.5.6",
     "moment": "^2.30.1",
-    "mongoose": "^8.2.0",
-    "socket.io": "^4.7.5"
+    "mongoose": "^8.2.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"
