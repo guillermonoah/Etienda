@@ -1,4 +1,4 @@
-// hola modificado del local huawei mejorado test git pages
+// hola modificado del local huawei  test noviembre2024
 
 
 // aqui se mstraran las intalaciondes de paquetes que no se suben a git por el gitignore
